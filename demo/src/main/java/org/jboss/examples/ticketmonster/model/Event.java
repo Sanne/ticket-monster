@@ -12,17 +12,20 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
 /**
  * <p>
  * Represents an event, which may have multiple performances with different dates and venues.
  * </p>
- * 
+ *
  * <p>
  * Event's principal members are it's relationship to {@link EventCategory} - specifying the type of event it is - and
  * {@link MediaItem} - providing the ability to add media (such as a picture) to the event for display. It also contains
  * meta-data about the event, such as it's name and a description.
  * </p>
- * 
+ *
  * @author Shane Bryzak
  * @author Marius Bogoevici
  * @author Pete Muir
@@ -33,6 +36,8 @@ import javax.validation.constraints.Size;
  */
 @SuppressWarnings("serial")
 @Entity
+@Portable
+@Indexed
 public class Event implements Serializable {
 
     /* Declaration of fields */
@@ -48,15 +53,15 @@ public class Event implements Serializable {
      * <p>
      * The name of the event.
      * </p>
-     * 
+     *
      * <p>
      * The name of the event forms it's natural identity and cannot be shared between events.
      * </p>
-     * 
+     *
      * <p>
      * Two constraints are applied using Bean Validation
      * </p>
-     * 
+     *
      * <ol>
      * <li><code>@NotNull</code> &mdash; the name must not be null.</li>
      * <li><code>@Size</code> &mdash; the name must be at least 5 characters and no more than 50 characters. This allows for
@@ -66,17 +71,18 @@ public class Event implements Serializable {
     @Column(unique = true)
     @NotNull
     @Size(min = 5, max = 50, message = "An event's name must contain between 5 and 50 characters")
+    @Field
     private String name;
 
     /**
      * <p>
      * A description of the event.
      * </p>
-     * 
+     *
      * <p>
      * Two constraints are applied using Bean Validation
      * </p>
-     * 
+     *
      * <ol>
      * <li><code>@NotNull</code> &mdash; the description must not be null.</li>
      * <li><code>@Size</code> &mdash; the name must be at least 20 characters and no more than 1000 characters. This allows for
@@ -86,21 +92,22 @@ public class Event implements Serializable {
      */
     @NotNull
     @Size(min = 20, max = 1000, message = "An event's description must contain between 20 and 1000 characters")
+    @Field
     private String description;
 
     /**
      * <p>
      * A media item, such as an image, which can be used to entice a browser to book a ticket.
      * </p>
-     * 
+     *
      * <p>
      * Media items can be shared between events, so this is modeled as a <code>@ManyToOne</code> relationship.
      * </p>
-     * 
+     *
      * <p>
      * Adding a media item is optional, and the view layer will adapt if none is provided.
      * </p>
-     * 
+     *
      */
     @ManyToOne
     private MediaItem mediaItem;
@@ -109,11 +116,11 @@ public class Event implements Serializable {
      * <p>
      * The category of the event
      * </p>
-     * 
+     *
      * <p>
      * Event categories are used to ease searching of available of events, and hence this is modeled as a relationship
      * </p>
-     * 
+     *
      * <p>
      * The Bean Validation constraint <code>@NotNull</code> indicates that the event category must be specified.
      */
