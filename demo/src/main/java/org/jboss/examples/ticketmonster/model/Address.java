@@ -4,28 +4,39 @@ import java.io.Serializable;
 
 import javax.persistence.Embeddable;
 
+import org.hibernate.search.annotations.Latitude;
+import org.hibernate.search.annotations.Longitude;
+import org.hibernate.search.annotations.Spatial;
+import org.hibernate.search.annotations.SpatialMode;
+
 /**
  * <p>
  * A reusable representation of an address.
  * </p>
- * 
+ *
  * <p>
  * Addresses are used in many places in an application, so to observe the DRY principle, we model Address as an embeddable
  * entity. An embeddable entity appears as a child in the object model, but no relationship is established in the RDBMS..
  * </p>
- * 
+ *
  * @author Marius Bogoevici
  * @author Pete Muir
  */
 @SuppressWarnings("serial")
 @Embeddable
+@Portable
+@Spatial(name="coordinates", spatialMode=SpatialMode.GRID)
 public class Address implements Serializable {
 
     /* Declaration of fields */
     private String street;
     private String city;
     private String country;
-    
+    @Latitude(of="coordinates")
+    private double latitude;
+    @Longitude(of="coordinates")
+    private double longitude;
+
     /* Declaration of boilerplate getters and setters */
 
     public String getStreet() {
@@ -53,7 +64,23 @@ public class Address implements Serializable {
     }
 
     /* toString(), equals() and hashCode() for Address, using the natural identity of the object */
-    
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
