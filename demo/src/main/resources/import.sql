@@ -91,7 +91,7 @@ insert into Section ( name, description, numberofrows, rowcapacity, venue_id) va
 
 -- Venue 4
 
-insert into Venue ( name, city, country, street, description, mediaitem_id, capacity) values ( 'Opera Garnier', 'Paris', 'France', '8 Rue Scribe','The Palais Garnier is a 1,979-seat opera house, which was built from 1861 to 1875 for the Paris Opera.', 23, 1972);
+insert into Venue ( name, city, country, street, description, mediaitem_id, capacity, latitude, longitude) values ( 'Opera Garnier', 'Paris', 'France', '8 Rue Scribe','The Palais Garnier is a 1,979-seat opera house, which was built from 1861 to 1875 for the Paris Opera.', 23, 1972, 48.8719444, 2.3316667);
 
 -- Section 16
 insert into Section ( name, description, numberofrows, rowcapacity, venue_id) values ( 'A', 'Center',10, 60, 4);
