@@ -18,8 +18,12 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.FieldBridge;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
+import org.jboss.jdf.example.ticketmonster.model.search.PriceMinBridge;
 
 /**
  * <p>
@@ -121,6 +125,8 @@ public class Show implements Serializable {
      * </p>
      */
     @OneToMany(mappedBy = "show", cascade = ALL, fetch = EAGER)
+    @Field(name="ticketPrices.min", analyze=Analyze.NO,
+        bridge=@FieldBridge(impl=PriceMinBridge.class))
     private Set<TicketPrice> ticketPrices = new HashSet<TicketPrice>();
 
     /* Boilerplate getters and setters */
