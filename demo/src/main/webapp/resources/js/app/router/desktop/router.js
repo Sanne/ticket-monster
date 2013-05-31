@@ -190,7 +190,7 @@ define("router", [
         },
         results:function (query) {
             var model = new Results();
-            model.set("query", query);
+            model.set("query", decodeURIComponent(query));
             var resultsView = new ResultsView({model:model, el:$("#content")});
             model.bind("change",
                 function () {
@@ -199,7 +199,7 @@ define("router", [
         },
         localResults:function (lat, lng, query) {
             var model = new Results();
-            model.set("query", query);
+            model.set("query", decodeURIComponent(query));
             model.set("lat", lat);
             model.set("lng", lng);
             var resultsView = new ResultsView({model:model, el:$("#content")});
