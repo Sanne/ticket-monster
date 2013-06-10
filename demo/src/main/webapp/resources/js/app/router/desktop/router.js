@@ -77,8 +77,8 @@ define("router", [
             "search/:query":"results",
             "search/anywhere/:query":"results",
             "search/anywhere/:query/category/:categoryId/minprice/:priceId":"results",
-            "search/around/:lat-:lng/:query":"localResults",
-            "search/around/:lat-:lng/:query/category/:categoryId/minprice/:priceId":"localResults",
+            "search/around/:lat/:lng/:query":"localResults",
+            "search/around/:lat/:lng/:query/category/:categoryId/minprice/:priceId":"localResults",
             "ignore":"ignore",
             "*actions":"defaultHandler"
         },
