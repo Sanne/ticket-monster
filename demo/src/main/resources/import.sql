@@ -104,7 +104,7 @@ insert into Section ( name, description, numberofrows, rowcapacity, venue_id) va
 
 -- Venue 5
 
-insert into Venue ( name, city, country, street, description, mediaitem_id, capacity) values ( 'Boston Symphony Hall', 'Boston', 'USA', '301 Massachusetts Avenue','Designed by McKim, Mead and White, it was built in 1900 for the Boston Symphony Orchestra, which continues to make the hall its home. The hall was designated a U.S. National Historic Landmark in 1999.', 24, 1972);
+insert into Venue ( name, city, country, street, description, mediaitem_id, capacity, latitude, longitude) values ( 'Boston Symphony Hall', 'Boston', 'USA', '301 Massachusetts Avenue','Designed by McKim, Mead and White, it was built in 1900 for the Boston Symphony Orchestra, which continues to make the hall its home. The hall was designated a U.S. National Historic Landmark in 1999.', 24, 1972, 42.342594, -71.085806);
 
 -- Section 20
 insert into Section ( name, description, numberofrows, rowcapacity, venue_id) values ( 'A', 'Center',10, 60, 5);
