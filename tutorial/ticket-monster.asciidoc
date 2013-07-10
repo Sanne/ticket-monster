@@ -26,3 +26,5 @@ include::HybridUI.asciidoc[]
 include::JBossDeployment.asciidoc[]
 
 include::OpenShiftDeployment.asciidoc[]
+
+include::HibernateSearch.asciidoc[]
